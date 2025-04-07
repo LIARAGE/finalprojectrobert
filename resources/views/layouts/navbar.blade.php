@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="#">PT Chipi Chapa</a>
+        {{-- Klik logo akan kembali ke /home --}}
+        <a class="navbar-brand fw-bold" href="{{ route('home') }}">PT Chipi Chapa</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>

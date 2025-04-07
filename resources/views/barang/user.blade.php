@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Katalog Barang</h1>
+    <h1 class="mb-4">Katalog Barang</h1>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -11,7 +11,7 @@
     <div class="row">
         @forelse($barangs as $barang)
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
+                <div class="card h-100 shadow">
                     @if($barang->foto)
                         <img src="{{ asset('storage/' . $barang->foto) }}" class="card-img-top" style="height:200px; object-fit:cover;">
                     @else
@@ -19,13 +19,12 @@
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $barang->nama }}</h5>
-                        <p>
-                            Kategori: {{ $barang->kategori->nama }}<br>
-                            Harga: Rp. {{ number_format($barang->harga) }}<br>
-                            Stok: {{ $barang->jumlah }}
+                        <p class="mb-2">
+                            <strong>Kategori:</strong> {{ $barang->kategori->nama }}<br>
+                            <strong>Harga:</strong> Rp. {{ number_format($barang->harga) }}<br>
+                            <strong>Stok:</strong> {{ $barang->jumlah }}
                         </p>
 
-                        {{-- ✅ Tambahkan pengecekan stok --}}
                         @if($barang->jumlah > 0)
                             <form action="{{ route('keranjang.tambah', $barang->id) }}" method="POST">
                                 @csrf
@@ -33,7 +32,7 @@
                             </form>
                         @else
                             <div class="alert alert-danger text-center p-2 mt-2 mb-0">
-                                Barang sudah habis!
+                                Stok habis!
                             </div>
                         @endif
                     </div>
